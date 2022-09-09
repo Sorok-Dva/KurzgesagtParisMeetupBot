@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import 'dotenv/config'
 
 import { dirname, importx } from '@discordx/importer'
 import type { Interaction, Message } from 'discord.js'
@@ -8,6 +9,7 @@ import { Client } from 'discordx'
 export const bot = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
+    IntentsBitField.Flags.GuildScheduledEvents,
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildMessages,
     IntentsBitField.Flags.GuildMessageReactions,
