@@ -5,6 +5,8 @@ import { dirname, importx } from '@discordx/importer'
 import type { Interaction, Message } from 'discord.js'
 import { IntentsBitField } from 'discord.js'
 import { Client } from 'discordx'
+import * as sqlite3 from 'sqlite3'
+import * as database from './database'
 
 export const bot = new Client({
   intents: [
@@ -22,6 +24,15 @@ export const bot = new Client({
     prefix: '!',
   },
 })
+
+// initializing db
+const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`,
+  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) console.error(err.message)
+    console.log(`Connected to the ${process.env.DB_NAME} database.`)
+    
+    database.create(db)
+  })
 
 bot.once('ready', async () => {
   await bot.guilds.fetch()
