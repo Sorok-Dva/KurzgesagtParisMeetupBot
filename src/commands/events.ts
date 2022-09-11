@@ -3,24 +3,22 @@
  *   _  _   ____      Author: Сорок два <sorokdva.developer@gmail.com>
  *  | || | |___ \
  *  | || |_  __) |                         Created: 2022/09/09 09:34 AM
- *  |__   _|/ __/                          Updated: 2022/09/11 11:03 AM
+ *  |__   _|/ __/                          Updated: 2022/09/11 05:07 AM
  *     |_| |_____| x Kurzgesagt Meetup Paris
  /******************************************************************************/
 import { Pagination } from '@discordx/pagination'
 import type { CommandInteraction } from 'discord.js'
 import { EmbedBuilder } from 'discord.js'
-import { Discord, Slash, SlashGroup } from 'discordx'
+import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
 
 @Discord()
-@SlashGroup({ name: 'events' })
-@SlashGroup({ name: 'list' })
+@SlashGroup({ name: 'events', description: 'Manage events' })
+@SlashGroup('events')
 export class Events {
   @Slash({
     description: 'Liste des events à venir',
-    name: 'list',
   })
-  @SlashGroup('events')
-  async pages(interaction: CommandInteraction): Promise<void> {
+  async list(interaction: CommandInteraction): Promise<void> {
     const events = (await interaction.guild?.scheduledEvents.fetch())?.map((event) => {
       return {
         name: event.name,
@@ -49,12 +47,22 @@ export class Events {
     await pagination.send()
   }
   
-  @Slash({
-    description: 'Définir l\'inventaire d\'un event',
-    name: 'set-inventory',
-  })
-  @SlashGroup('set-inventory', 'events')
-  async setInventory(interaction: CommandInteraction): Promise<void> {
+  @Slash()
+  async create(
+    @SlashOption({ description: 'Name of the event', name: 'name' })
+      name: string,
+    @SlashOption({ description: 'Description of the event', name: 'desc' })
+      description: string,
+    @SlashOption({ description: 'Date of the event (dd-mm-yyyy HH:mm)', name: 'date' })
+      date: string,
+    interaction: CommandInteraction
+  ): Promise<void> {
+  
+  }
+  
+  @Slash()
+  @SlashGroup('inventory')
+  async add(interaction: CommandInteraction): Promise<void> {
   
   }
 }
