@@ -2,8 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "outDir": "build",
-    "rootDir": "src",
     "strict": true,
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
@@ -13,7 +11,23 @@
     "esModuleInterop": true,
 
     "skipLibCheck": false,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    "outDir": "build",
+    "rootDir": "src",
+    // "paths": {
+    //   "@/*": ["src/*"]
+    // },
+    // NOTE: `typeRoots` are only used to resolve /// <reference types=".." /> directives
+    // see: https://github.com/Microsoft/TypeScript/issues/12222#issuecomment-260417733
+    "typeRoots": [
+      "@types",
+      "node_modules/@types"
+    ],
   },
+  "include": [
+    "@types",
+    "src"
+  ],
   "exclude": ["build", "node_modules"]
 }
