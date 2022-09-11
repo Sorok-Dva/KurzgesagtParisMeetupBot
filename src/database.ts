@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *  database.ts
+ *   _  _   ____      Author: Сорок два <sorokdva.developer@gmail.com>
+ *  | || | |___ \
+ *  | || |_  __) |                         Created: 2022/09/09 10:52 PM
+ *  |__   _|/ __/                          Updated: 2022/09/11 11:03 AM
+ *     |_| |_____| x Kurzgesagt Meetup Paris
+ /******************************************************************************/
 import sqlite3 from 'sqlite3'
 import { User } from 'discord.js'
 import * as fs from 'fs'
@@ -16,16 +24,16 @@ const create = (): void => {
     .filter(file => file.endsWith('.sql'))
   
   for (const file of migrations) {
+    console.log('CREATE', file)
     const migration = fs.readFileSync(`${dirname(import.meta.url)}/db/migrations/${file}`).toString()
     instance.exec(migration)
   }
 }
 
 const createUser = async (user: User): Promise<void> => {
-  const all = await instance.exec('SELECT * FROM users')
-  const row = await instance.get('SELECT id FROM users WHERE id = ?', user.id)
-  console.log('row', row, all)
-  instance.run(`INSERT INTO users (id, nickname) VALUES ("${user.id}", "${user.username}")`)
+  await instance.get('SELECT id FROM users WHERE id = ?', user.id, (err, res) => {
+    if (!res) instance.run(`INSERT INTO users (id, nickname) VALUES ("${user.id}", "${user.username}")`)
+  })
 }
 
 export {

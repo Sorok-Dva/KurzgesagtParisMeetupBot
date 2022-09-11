@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *  main.ts
+ *   _  _   ____      Author: Сорок два <sorokdva.developer@gmail.com>
+ *  | || | |___ \
+ *  | || |_  __) |                         Created: 2022/09/09 09:34 PM
+ *  |__   _|/ __/                          Updated: 2022/09/11 11:06 AM
+ *     |_| |_____| x Kurzgesagt Meetup Paris
+ /******************************************************************************/
 import 'reflect-metadata'
 import 'dotenv/config'
 
@@ -5,8 +13,8 @@ import { dirname, importx } from '@discordx/importer'
 import type { Interaction, Message } from 'discord.js'
 import { IntentsBitField } from 'discord.js'
 import { Client } from 'discordx'
-import * as sqlite3 from 'sqlite3'
-import * as database from './database'
+
+import * as database from './database.js'
 
 export const bot = new Client({
   intents: [
@@ -25,15 +33,6 @@ export const bot = new Client({
   },
 })
 
-// initializing db
-const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`,
-  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
-    if (err) console.error(err.message)
-    console.log(`Connected to the ${process.env.DB_NAME} database.`)
-    
-    database.create(db)
-  })
-
 bot.once('ready', async () => {
   await bot.guilds.fetch()
   await bot.initApplicationCommands()
@@ -45,8 +44,10 @@ bot.on('interactionCreate', (interaction: Interaction) => {
   bot.executeInteraction(interaction)
 })
 
-bot.on('messageCreate', (message: Message) => {
-  bot.executeCommand(message)
+bot.on('messageCreate', async (message: Message) => {
+  if (message.author.bot) return
+  await bot.executeCommand(message)
+  await database.createUser(message.author)
 })
 
 const run = async () => {

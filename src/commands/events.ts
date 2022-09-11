@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *  commands/events.ts
+ *   _  _   ____      Author: Сорок два <sorokdva.developer@gmail.com>
+ *  | || | |___ \
+ *  | || |_  __) |                         Created: 2022/09/09 09:34 AM
+ *  |__   _|/ __/                          Updated: 2022/09/11 11:03 AM
+ *     |_| |_____| x Kurzgesagt Meetup Paris
+ /******************************************************************************/
 import { Pagination } from '@discordx/pagination'
 import type { CommandInteraction } from 'discord.js'
 import { EmbedBuilder } from 'discord.js'
@@ -39,5 +47,14 @@ export class Events {
 
     const pagination = new Pagination(interaction, pages ?? [])
     await pagination.send()
+  }
+  
+  @Slash({
+    description: 'Définir l\'inventaire d\'un event',
+    name: 'set-inventory',
+  })
+  @SlashGroup('set-inventory', 'events')
+  async setInventory(interaction: CommandInteraction): Promise<void> {
+  
   }
 }
