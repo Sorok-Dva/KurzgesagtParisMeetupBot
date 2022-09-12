@@ -1,48 +1,20 @@
 <div>
   <p align="center">
-    <a href="https://discordx.js.org" target="_blank" rel="nofollow">
-      <img src="https://discordx.js.org/discordx.svg" width="546" />
-    </a>
+    <img src="https://purs.tk/assets/images/upload/img-efedfe9b9a3f795eaf97bf72f489197e77fb768a.png" />
   </p>
   <p align="center">
-    <a href="https://discordx.js.org/discord"
-      ><img
-        src="https://img.shields.io/discord/874802018361950248?color=5865F2&logo=discord&logoColor=white"
-        alt="Discord server"
-    /></a>
-    <a href="https://www.npmjs.com/package/discordx"
-      ><img
-        src="https://img.shields.io/npm/v/discordx.svg?maxAge=3600"
-        alt="NPM version"
-    /></a>
-    <a href="https://www.npmjs.com/package/discordx"
-      ><img
-        src="https://img.shields.io/npm/dt/discordx.svg?maxAge=3600"
-        alt="NPM downloads"
-    /></a>
-    <a href="https://github.com/oceanroleplay/discord.ts/actions"
-      ><img
-        src="https://github.com/oceanroleplay/discord.ts/workflows/Build/badge.svg"
-        alt="Build status"
-    /></a>
-    <a href="https://www.paypal.me/vijayxmeena"
-      ><img
-        src="https://img.shields.io/badge/donate-paypal-F96854.svg"
-        alt="paypal"
-    /></a>
-  </p>
-  <p align="center">
-    <b> Create a discord bot with TypeScript and Decorators! </b>
+    <b> Builded with discord.js & discordx </b>
   </p>
 </div>
 
 # 📖 Introduction
 
-A starter template equipped with several interaction commands and one event.
+This bot haves multiple functions to help organize meetup.
 
 # 🏗 Development
 
 ```
+make .env
 npm install
 npm run dev
 ```
@@ -56,6 +28,7 @@ npm run watch
 # 💻 Production
 
 ```
+make .env
 npm install --production
 npm run build
 npm run start
