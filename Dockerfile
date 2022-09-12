@@ -26,11 +26,13 @@ WORKDIR /app
 # Copy package.json from build-runner
 COPY --from=build-runner /tmp/app/package.json /app/package.json
 
+COPY /tmp/app/src/db /app/dist
+
 # Install dependencies
 RUN npm install --only=production
 
 # Move build files
-COPY --from=build-runner /tmp/app/build /app/build
+COPY --from=build-runner /tmp/app/dist /app/dist
 
 # Start bot
 CMD [ "npm", "run", "start" ]

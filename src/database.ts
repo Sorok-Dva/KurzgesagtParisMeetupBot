@@ -12,7 +12,7 @@ import { dirname } from '@discordx/importer'
 import * as fs from 'fs'
 import * as util from 'util'
 
-import { IUser } from '../@types/db/user'
+import { IUser } from './@types/user'
 
 const instance = new sqlite3.Database(`./${process.env.DB_NAME}.db`,
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {

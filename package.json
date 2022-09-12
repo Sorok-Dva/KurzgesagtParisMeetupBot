@@ -5,7 +5,11 @@
   "license": "MIT",
   "author": "Сорок два <sorokdva.developer@gmail.com>",
   "type": "module",
-  "main": "build/main.js",
+  "main": "dist/main.js",
+  "types": "dist/@types/main.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "run-p build:*",
     "build:all": "tsc -d",
@@ -13,7 +17,7 @@
     "describe": "npm-scripts-info",
     "dev": "ts-node-esm src/main.ts",
     "release": "standard-version -s",
-    "start": "node build/main.js",
+    "start": "node dist/main.js",
     "test": "run-p test:**",
     "test:lint": "eslint 'src/**/*.ts' --fix",
     "vulnerabilities": "snyk monitor",
