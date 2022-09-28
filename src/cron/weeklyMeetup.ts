@@ -69,6 +69,7 @@ export const deleteChannels = async (guild: Guild): Promise<void> => {
 const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<void> => {
   await deleteChannels(guild)
   groups.map(async (group, i) => {
+    const users = group.map(u => `<@${u.id}>`).join(', ')
     const channel = await guild.channels.create({
       name: `Rencontre #${i + 1}`,
       type: ChannelType.GuildText,
@@ -90,7 +91,7 @@ const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<
       new EmbedBuilder()
         .setTitle('Rencontre aléatoire')
         .setColor(1146986)
-        .setDescription(`Bienvenue @here ! Ce salon a été créé afin que vous organisiez un meetup entre vous !`)
+        .setDescription(`Bienvenue ${users} ! Ce salon a été créé afin que vous organisiez un meetup entre vous !`)
       ]
     })
   })
