@@ -90,7 +90,7 @@ const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<
       new EmbedBuilder()
         .setTitle('Rencontre aléatoire')
         .setColor(1146986)
-        .setDescription(`Bienvenue @here ! Ce salon a été créer afin que vous organisiez un meetup entre vous !`)
+        .setDescription(`Bienvenue @here ! Ce salon a été créé afin que vous organisiez un meetup entre vous !`)
       ]
     })
   })
