@@ -106,7 +106,7 @@ const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<
 export const createMeetupGroups = async (guilds: GuildManager): Promise<void> => {
   const guild = await guilds.fetch(String(process.env.DISCORD_GUILD_ID))
   const channel = await guild.channels.fetch(String(process.env.MEETUP_CHANNEL_LOG))
-  if(!channel) throw new Error('Channel not found. Please check guild & channel id')
+  if (!channel) throw new Error('Channel not found. Please check guild & channel id')
   
   const members = (await guild.members.fetch()).filter(member => !member.user.bot)
   
