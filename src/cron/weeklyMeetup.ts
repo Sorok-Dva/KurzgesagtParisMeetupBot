@@ -46,7 +46,14 @@ const send = async (channel: Channel, embed: EmbedBuilder): Promise<void> => {
   if (channel?.isTextBased()) channel.send({ embeds: [embed] })
 }
 
-const deleteChannels = async (guild: Guild) => {
+/**
+ * Delete the channels of random weekly meetups
+ *
+ * @param {Guild} guild
+ *
+ * @returns {void}
+ */
+export const deleteChannels = async (guild: Guild): Promise<void> => {
   const fetchedChannel = (await guild.channels.fetch()).map(r => {
     if (r.name.startsWith('rencontre-')) return r
   })
@@ -62,16 +69,6 @@ const deleteChannels = async (guild: Guild) => {
 const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<void> => {
   await deleteChannels(guild)
   groups.map(async (group, i) => {
-    console.log([
-      {
-        id: guild.roles.everyone,
-        deny: [PermissionFlagsBits.ViewChannel],
-      },
-      ...group.map(user => ({
-        id: String(user.id),
-        allow: [PermissionFlagsBits.ViewChannel],
-      })),
-    ])
     const channel = await guild.channels.create({
       name: `Rencontre #${i + 1}`,
       type: ChannelType.GuildText,
