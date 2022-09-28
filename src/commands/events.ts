@@ -108,4 +108,18 @@ export class Events {
       ephemeral: true,
     })
   }
+  
+  @Slash({ name: 'count-random-registered', description: 'Récuperez le nombre d\'inscrits pour les groupes random' })
+  async countRandomRegistered(interaction: CommandInteraction): Promise<void> {
+    if (!(<GuildMemberRoleManager>interaction.member?.roles).cache.some((r: Role) => r.name === 'Modération/Staff'))
+      return
+    if (!interaction.guild) return
+    const queryResult = await instance.all('SELECT id FROM users WHERE randomGroups = ?', true)
+    // @ts-ignore
+    const count = queryResult.length
+    await interaction.reply({
+      content: `${count} users are registered to random groups.`,
+      ephemeral: true,
+    })
+  }
 }
