@@ -3,7 +3,7 @@
  *   _  _   ____      Author: Сорок два <sorokdva.developer@gmail.com>
  *  | || | |___ \
  *  | || |_  __) |                         Created: 2022/09/27 05:30 PM
- *  |__   _|/ __/                          Updated: 2022/09/28 11:16 AM
+ *  |__   _|/ __/                          Updated: 2022/09/28 11:39 AM
  *     |_| |_____| x Kurzgesagt Meetup Paris
  /******************************************************************************/
 import {
@@ -12,6 +12,7 @@ import {
   Guild,
   GuildManager,
   ChannelType,
+  OverwriteType,
   PermissionFlagsBits,
 } from 'discord.js'
 import * as database from '../database.js'
@@ -83,6 +84,7 @@ const generateGroup = async (groups: { id: string }[][], guild: Guild): Promise<
         ...group.map(user => ({
           id: String(user.id),
           allow: [PermissionFlagsBits.ViewChannel],
+          type: OverwriteType.Member,
         })),
       ],
     })
@@ -120,7 +122,7 @@ export const createMeetupGroups = async (guilds: GuildManager): Promise<void> =>
     await database.createUser(member.user)
   })
   
-  const queryResult = await database.instance.all('SELECT id FROM users WHERE randomGroups = ?', false)
+  const queryResult = await database.instance.all('SELECT id FROM users WHERE randomGroups = ?', true)
   // @ts-ignore
   const count = queryResult.length
   // @ts-ignore
