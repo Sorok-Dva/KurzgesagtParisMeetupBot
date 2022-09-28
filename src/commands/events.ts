@@ -8,9 +8,10 @@
  /******************************************************************************/
 import { Pagination } from '@discordx/pagination'
 import type { CommandInteraction } from 'discord.js'
-import { EmbedBuilder } from 'discord.js'
+import { EmbedBuilder, GuildMemberRoleManager, Role } from 'discord.js'
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
 import { instance } from '../database.js'
+import { deleteChannels } from '../cron/weeklyMeetup.js'
 
 @Discord()
 @SlashGroup({ name: 'events', description: 'Manage events' })
@@ -93,6 +94,18 @@ export class Events {
       content: randomGroup
         ? 'Vous avez activer la recherche de groupe.'
         : 'Vous avez désactiver la recherche de groupe.',
+    })
+  }
+  
+  @Slash({ name: 'clear-weekly', description: 'Supprimez les salons aléatoires' })
+  async clear(interaction: CommandInteraction): Promise<void> {
+    if (!(<GuildMemberRoleManager>interaction.member?.roles).cache.some((r: Role) => r.name === 'Modération/Staff'))
+      return
+    if (!interaction.guild) return
+    await deleteChannels(interaction.guild)
+    await interaction.reply({
+      content: 'Salons weekly supprimés avec succès',
+      ephemeral: true,
     })
   }
 }
