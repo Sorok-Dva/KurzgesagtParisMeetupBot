@@ -1,6 +1,6 @@
 {
   "name": "kurzgesagt-meetup-paris",
-  "version": "0.0.2-rc.0",
+  "version": "0.1.2",
   "private": false,
   "license": "MIT",
   "author": "Сорок два <sorokdva.developer@gmail.com>",
@@ -13,7 +13,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:all": "tsc -d",
-    "changelog": "npx @discordx/changelog --root=src",
+    "changelog": "npx @discordx/changelog",
     "describe": "npm-scripts-info",
     "dev": "ts-node-esm src/main.ts",
     "release": "standard-version -s",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@discordx/importer": "^1.1.10",
     "@discordx/pagination": "^3.0.0",
+    "cron": "^2.1.0",
     "discord.js": "^14.3.0",
     "discordx": "^11.1.12",
     "dotenv": "^16.0.2",
@@ -33,6 +34,7 @@
     "sqlite3": "^5.0.11"
   },
   "devDependencies": {
+    "@types/cron": "^2.0.0",
     "@types/node": "^18.7.14",
     "@types/sqlite3": "^3.1.8",
     "eslint": "^7.28.0",
