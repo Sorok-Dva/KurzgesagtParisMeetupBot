@@ -1,6 +1,6 @@
 {
   "name": "kurzgesagt-meetup-paris",
-  "version": "0.0.2-rc.0",
+  "version": "0.1.2",
   "private": false,
   "license": "MIT",
   "author": "Сорок два <sorokdva.developer@gmail.com>",
@@ -13,7 +13,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:all": "tsc -d",
-    "changelog": "npx @discordx/changelog --root=src",
+    "changelog": "npx @discordx/changelog",
     "describe": "npm-scripts-info",
     "dev": "ts-node-esm src/main.ts",
     "release": "standard-version -s",
