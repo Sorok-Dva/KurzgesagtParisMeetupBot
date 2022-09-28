@@ -92,8 +92,8 @@ export class Events {
   
     await interaction.reply({
       content: randomGroup
-        ? 'Vous avez activer la recherche de groupe.'
-        : 'Vous avez désactiver la recherche de groupe.',
+        ? 'Vous avez activé la recherche de groupe.'
+        : 'Vous avez désactivé la recherche de groupe.',
     })
   }
   
