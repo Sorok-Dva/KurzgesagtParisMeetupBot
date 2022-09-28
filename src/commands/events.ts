@@ -11,7 +11,7 @@ import type { CommandInteraction } from 'discord.js'
 import { EmbedBuilder, GuildMemberRoleManager, Role } from 'discord.js'
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
 import { instance } from '../database.js'
-import { deleteChannels } from '../cron/weeklyMeetup.js'
+import { createMeetupGroups, deleteChannels } from '../cron/weeklyMeetup.js'
 
 @Discord()
 @SlashGroup({ name: 'events', description: 'Manage events' })
@@ -119,6 +119,20 @@ export class Events {
     const count = queryResult.length
     await interaction.reply({
       content: `${count} users are registered to random groups.`,
+      ephemeral: true,
+    })
+  }
+  
+  @Slash({ name: 'generate-groups', description: 'Générez les groupes aléatoires' })
+  async generateGroups(interaction: CommandInteraction): Promise<void> {
+    if (!(<GuildMemberRoleManager>interaction.member?.roles).cache.some((r: Role) => r.name === 'Ingénieur des robots'))
+      return
+    if (!interaction.guild) return
+    
+    await createMeetupGroups(interaction.client.guilds)
+    
+    await interaction.reply({
+      content: `Commande executée avec succès.`,
       ephemeral: true,
     })
   }

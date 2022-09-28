@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.3 (2022-09-28)
+
+
+### Features
+
+* add get & update user ([63539fb](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/63539fbb4ad3594753e43b5eb9bab67742464131))
+* **cmd:** add hobbies & games fields in profile ([959c330](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/959c330cbf598d0f0975d0bc660d494fcffd3a03))
+* **cmd:** clear-weekly channels ([3f5e0ba](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/3f5e0ba24c3a6453875aaefeaa1a1f2efb6787a3))
+* **cmd:** count users registered to random groups ([d954bd0](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/d954bd0d6227ccca4c3e997acea423f1d196a692))
+* **cmd:** events list ([526cf72](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/526cf72809c2f54687320aea0fbfe4ee343b4944))
+* **cmd:** manually generate random groups ([33997d9](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/33997d977530c5a9aca4679dc7b6647af6ebaceb))
+* **cmd:** profile commands (view & edit) ([1084875](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/108487542e51d0b1ae2963bdfcfe6f826450c645))
+* **cmd:** prune command ([2dc559f](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/2dc559ff0c1ab6ee20d9b60f9879dbcce5bdb598))
+* **cmd:** random events command ([595d06a](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/595d06a933c080f56f25380855e7b63154561322))
+* **cron:** weekly meetup creation ([547eb64](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/547eb64f3ee9e53d8d08cedbd390655c3cb65c5e))
+* env variables added ([95b3f63](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/95b3f630083681a298549b776a0ecc80eb8d571f))
+* run cronjob method ([e5bded2](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/e5bded2d53c8c89f90a3c6ec24482ef14e9cc6c3))
+
+
+### Bug Fixes
+
+* empty events list ([6b21b20](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/6b21b204c0e57059a94020513d9622b8b70452dc))
+* permissionOverwrites users type ([cfc3e7b](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/cfc3e7b61a881497a793419e1026697ab972c783))
+* **profile:** empty hobbies or games ([b288a8b](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/b288a8bbf067da6f9c508ca7f06c49154454b70f))
+* **profile:** read user of undefined ([e64deec](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/e64deeccd7694e97e4725e763ac42ea5edc9a182))
+* rm console.log & add missing doc ([f37c99c](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/f37c99c3e37a2744eb07c28eb1592ef7d8d6a018))
+* typo in events random message ([093806f](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/093806fb03f61e20228ad14f738b99018ee21ee6))
+* **wip:** startup errors ([79f7bf1](https://github.com/Sorok-Dva/KurzgesagtParisMeetupBot/commit/79f7bf1571132ce1991707578bd3ab295cdeed20))
+
 ### 0.1.2 (2022-09-28)
 
 
