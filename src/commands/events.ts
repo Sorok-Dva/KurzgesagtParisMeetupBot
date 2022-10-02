@@ -73,6 +73,83 @@ export class Events {
   
   }
   
+  @Slash({ description: 'À court d\'idées pour un event ? Cette commande vous donnera une activité aléatoire à faire !' })
+  async idea(
+    interaction: CommandInteraction
+  ): Promise<void> {
+    const ideas = [
+      {
+        idea: 'Bar',
+        description: 'Allez boire un coup !'
+      },
+      {
+        idea: 'Sport',
+        description: 'Escalade, badminton, foot, basket etc...'
+      },
+      {
+        idea: 'Laser Game',
+        description: 'https://laser-world-paris.fr/'
+      },
+      {
+        idea: 'Escape Game',
+        description: 'Besoin d\'évasion ?'
+      },
+      {
+        idea: 'Airsoft / paintball',
+        description: 'https://www.realitygame.fr/'
+      },
+      {
+        idea: 'Fury Room',
+        description: 'Envie de se défouler ? https://www.furyroom.fr/'
+      },
+      {
+        idea: 'Festival',
+        description: 'Allez taper du pied !'
+      },
+      {
+        idea: 'Concert',
+        description: 'Profitez de la bonne musique !'
+      },
+      {
+        idea: 'Promenade en bord de seine',
+        description: 'Un petit moment chill en bord de seine avec des boissons et de la musique ?'
+      },
+      {
+        idea: 'Balade en vélo / trottinette',
+        description: 'Besoin d\'une petite balade ?'
+      },
+      {
+        idea: 'Urbex',
+        description: 'Envie de découvrir des lieux insolites ?'
+      },
+      {
+        idea: 'Chute Libre Indoor',
+        description: 'Envie de voler ? https://www.iflyfrance.com/locations/paris'
+      },
+      {
+        idea: 'Musée / exposition',
+        description: 'Voici quelques musée sympathique à voir :' +
+          '\n- https://www.google.com/search?q=mus%C3%A9e+paris' +
+          '\n- https://museedelillusion.fr/'
+      },
+      {
+        idea: 'Jeux de société / Jeux de rôle',
+        description: 'Une partie de carte, loups-garous ou encore un D&D ?'
+      },
+    ]
+  
+    const activity = ideas[Math.floor(Math.random() * ideas.length)];
+    
+    const activitiesEmbed =new EmbedBuilder()
+      .setColor(1752220)
+      .setTitle(`À court d'idée pour un event ?`)
+      .setDescription('Pas de panique, voilà ce que je vous propose !')
+      .addFields({ name: 'Activité', value: activity.idea, inline: true })
+      .addFields({ name: 'Description', value: activity.description })
+  
+    await interaction.reply({ embeds: [activitiesEmbed] })
+  }
+  
   @Slash({ description: 'Participez aux events avec un groupe aléatoire !' })
   async random(
     @SlashOption({ description: 'Activer ou désactiver la recherche de groupe (oui ou non)', name: 'participation' })
