@@ -132,7 +132,8 @@ export class Events {
     const participants = queryResult.map((participant: { id }) => `<@${participant.id}>`).join(',')
     const participantsEmbed = new EmbedBuilder()
       .setColor(1752220)
-      .setDescription(`Voici la liste des participants aux events random : ${participants}`)
+      .setTitle(`Liste des participants aux events aléatoires`)
+      .setDescription(participants)
       .addFields({ name: 'Total', value: String(count), inline: true })
       .setFooter({ text: `Demandé par ${interaction.member?.user.username}` })
   
@@ -151,5 +152,19 @@ export class Events {
       content: `Commande executée avec succès.`,
       ephemeral: true,
     })
+  }
+  
+  @Slash({ name: 'next-random', description: 'Générez les groupes aléatoires' })
+  async nextRandomEvents(interaction: CommandInteraction): Promise<void> {
+    let d = new Date()
+    d.setDate(d.getDate() + (((1 + 7 - d.getDay()) % 7) || 7))
+    d.setHours(9, 0, 0, 0)
+    const nextRandom = d.getTime() / 1000
+    const participantsEmbed = new EmbedBuilder()
+      .setColor(1752220)
+      .setTitle(`Prochaine date de création des events random`)
+      .setDescription(`Les groupes pour les events aléatoires seront créés le <t:${ ~~nextRandom }:f> (<t:${ ~~nextRandom }:R>)`)
+  
+    await interaction.reply({ embeds: [participantsEmbed] })
   }
 }
