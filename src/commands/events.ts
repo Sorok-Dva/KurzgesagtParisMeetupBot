@@ -123,6 +123,22 @@ export class Events {
     })
   }
   
+  @Slash({ name: 'list-random-participants', description: 'Récuperez la liste des participants aux events random' })
+  async listRandomParticipants(interaction: CommandInteraction): Promise<void> {
+    const queryResult = await instance.all('SELECT id FROM users WHERE randomGroups = ?', true)
+    // @ts-ignore
+    const count = queryResult.length
+    // @ts-ignore
+    const participants = queryResult.map((participant: { id }) => `<@${participant.id}>`).join(',')
+    const participantsEmbed = new EmbedBuilder()
+      .setColor(1752220)
+      .setDescription(`Voici la liste des participants aux events random : ${participants}`)
+      .addFields({ name: 'Total', value: String(count), inline: true })
+      .setFooter({ text: `Demandé par ${interaction.member?.user.username}` })
+  
+    await interaction.reply({ embeds: [participantsEmbed] })
+  }
+  
   @Slash({ name: 'generate-groups', description: 'Générez les groupes aléatoires' })
   async generateGroups(interaction: CommandInteraction): Promise<void> {
     if (!(<GuildMemberRoleManager>interaction.member?.roles).cache.some((r: Role) => r.name === 'Ingénieur des robots'))
