@@ -24,7 +24,7 @@
     "watch": "nodemon --exec ts-node-esm src/main.ts"
   },
   "dependencies": {
-    "@discordx/importer": "^1.1.10",
+    "@discordx/importer": "^1.2.0",
     "@discordx/pagination": "^3.0.0",
     "cron": "^2.1.0",
     "discord.js": "^14.3.0",
